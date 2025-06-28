@@ -1,5 +1,6 @@
 import org.example.Point
 import org.junit.jupiter.api.Test
+import org.junit.jupiter.api.assertThrows
 import MoveStraight
 import kotlin.test.assertEquals
 
@@ -29,6 +30,15 @@ class TestPoint {
         assertEquals(point.y, newPoint.y)
     }
 
+   @Test
+    fun testIdenticalStartandEnd(){
+        val point1 = Point(0.0, 0.0, null)
+        val point2 = Point(0.0, 0.0, null)
+        assertThrows<IllegalArgumentException> {
+            val line = Line(point1, point2)
+        }
+    }
+    
     @Test
     fun testGetLength(){
         val point1 = Point(0.0, 0.0, null)
