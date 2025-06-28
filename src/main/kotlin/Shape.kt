@@ -1,19 +1,18 @@
 import org.example.Point
 
-abstract class Shape (private var _points : List<Point>) {
-
+abstract class Shape (private var _points: List<Point>) {
 
     val points: List<Point>
         get() = _points
-    
-    fun moveStrategy(move: Move) { 
-        points.forEach{point ->
+
+    fun setMoveStrategy(move: Move) { 
+        for (point in points) {
             point.setMoveStrategy(move)
         }
     }
 
     fun moveShape() {
-        points.forEach { point ->
+       for (point in points) {
             point.movePoint()
         }
     }
