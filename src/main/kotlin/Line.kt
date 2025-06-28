@@ -2,8 +2,8 @@ import org.example.Point
 import kotlin.math.sqrt
 
 class Line(
-    private val start: Point, 
-    private val end: Point
+    private var _start: Point, 
+    private var _end: Point
     ) {
 
     init {
@@ -12,9 +12,10 @@ class Line(
         }
     }
     
-    fun getStart() = start
-
-    fun getEnd() = end
+    val start: Point
+        get() = _start
+    val end: Point
+        get() = _end
 
     fun getLength(): Double {
         val deltax = end.x - start.x

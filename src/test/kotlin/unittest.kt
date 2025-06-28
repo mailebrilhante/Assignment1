@@ -61,10 +61,10 @@ class TestPoint {
         val point2 = Point(1.0, 1.0, MoveStraight(1.0, 1.0))
         val line = Line(point1, point2)
         line.moveLine()
-        assertEquals(1.0, line.getStart().x)
-        assertEquals(1.0, line.getStart().y)
-        assertEquals(2.0, line.getEnd().x)
-        assertEquals(2.0, line.getEnd().y)
+        assertEquals(1.0, line.start.x)
+        assertEquals(1.0, line.start.y)
+        assertEquals(2.0, line.end.x)
+        assertEquals(2.0, line.end.y)
     }
 
     @Test
@@ -74,9 +74,9 @@ class TestPoint {
         val line = Line(point1, point2)
         line.setMoveStrategy(MoveStraight(1.0, 1.0))
         line.moveLine()
-        assertEquals(1.0, line.getStart().x)
-        assertEquals(1.0, line.getStart().y)
-        assertEquals(2.0, line.getEnd().x)
-        assertEquals(2.0, line.getEnd().y)
+        assertEquals(1.0, line.start.x)
+        assertEquals(1.0, line.start.y)
+        assertEquals(2.0, line.end.x)
+        assertEquals(2.0, line.end.y)
     }
 }
