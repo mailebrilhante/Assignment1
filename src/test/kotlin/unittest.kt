@@ -11,4 +11,12 @@ class TestPoint {
         assertEquals(1.0, newPoint.x)
         assertEquals(1.0, newPoint.y)
     }
+
+    @Test
+    fun testClonePoint() {
+        val point = Point(0.0, 0.0, null)
+        val newPoint = point.clonePoint()
+        assertEquals(0.0, newPoint.x)
+        assertEquals(0.0, newPoint.y)
+    }
 }
