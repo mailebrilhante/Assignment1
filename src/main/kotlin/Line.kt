@@ -1,8 +1,17 @@
 import org.example.Point
 import kotlin.math.sqrt
 
-class Line(private val start: Point, private val end: Point) {
+class Line(
+    private val start: Point, 
+    private val end: Point
+    ) {
 
+    init {
+        if (start.x == end.x && start.y == end.y) {
+            throw IllegalArgumentException("Start and end points cannot be the same.")
+        }
+    }
+    
     fun getStart() = start
 
     fun getEnd() = end
