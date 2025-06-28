@@ -1,5 +1,7 @@
 package org.example
 import Move
+import kotlin.io.print
+import kotlin.io.println
 
 class Point(
     private var _x: Double, 
@@ -13,13 +15,18 @@ class Point(
     val y : Double
         get() = _y
 
-    fun move() = moveStrategy?.move(this) ?: this
     
     fun setMoveStrategy(newMove: Move) {
         moveStrategy = newMove
     }
+    
+    fun movePoint() = moveStrategy?.move(this) ?: println("No move strategy set for this point.")
 
+    fun updatePoint(newX: Double, newY: Double) {
+        _x = newX
+        _y = newY
+    }
+    
     fun clonePoint() = Point(x, y, moveStrategy)
-
 
 }
