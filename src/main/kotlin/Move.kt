@@ -1,5 +1,3 @@
-import org.example.Point
-
 interface Move {
     fun move(point: Point)
 }

@@ -1,6 +1,4 @@
-import org.example.Point
-
-class Ellipse(center: Point, private val _radius1: Double, private val _radius2: Double) : Shape(listOf(
+open class Ellipse(center: Point, private val _radius1: Double, private val _radius2: Double) : Shape(listOf(
     center
 )) {
 

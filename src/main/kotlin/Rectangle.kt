@@ -1,32 +1,24 @@
+open class Rectangle(point1: Point, point2: Point
+    ) : Shape(listOf(point1, point2,)) {
 
-import org.example.Point
-
-open class Rectangle(topLeft: Point, bottomRight: Point) : Shape(listOf(
-    topLeft,
-    bottomRight,
-)) {   
-
-    val topLeft: Point
+    val point1: Point
         get() = points[0]
-    val bottomRight: Point
+    val point2: Point
         get() = points[1]
     
     init {
-        if (topLeft.x == bottomRight.x && topLeft.y == bottomRight.y) {
-            throw IllegalArgumentException("Top left and bottom right points cannot be the same.") 
+        if (point1.x == point2.x || point1.y == point2.y) {
+            throw IllegalArgumentException("Rectangle cannot have zero width or height.") 
         }
     }
 
     override fun getArea(): Double {
-        val width = bottomRight.x - topLeft.x
-        val height = bottomRight.y - topLeft.y
+        val width = kotlin.math.abs(point2.x - point1.x)
+        val height = kotlin.math.abs(point2.y - point1.y)
         return width * height
     }
 
     override fun getAttributes(): List<Any> {
-        return listOf(
-            "Top Left: (${topLeft.x}, ${topLeft.y})",
-            "Bottom Right: (${bottomRight.x}, ${bottomRight.y})",
-        )
+        return listOf(point1, point2)
     }
 }
