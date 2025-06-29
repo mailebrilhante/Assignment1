@@ -1,38 +1,37 @@
-import org.example.Point
 import kotlin.math.sqrt
 
 class Line(
-    private var _start: Point, 
-    private var _end: Point
+    private var _point1: Point, 
+    private var _point2: Point
     ) {
 
     init {
-        if (start.x == end.x && start.y == end.y) {
+        if (point1.x == point2.x && point1.y == point2.y) {
             throw IllegalArgumentException("Start and end points cannot be the same.")
         }
     }
     
-    val start: Point
-        get() = _start
-    val end: Point
-        get() = _end
+    val point1: Point
+        get() = _point1.clonePoint()
+    val point2: Point
+        get() = _point2.clonePoint()
 
     fun getLength(): Double {
-        val deltax = end.x - start.x
-        val deltay = end.y - start.y
+        val deltax = point2.x - point1.x
+        val deltay = point2.y - point1.y
         return sqrt(deltax * deltax + deltay * deltay)
     }
 
-    fun getSlope() = (end.y - start.y) / (end.x - start.x)
+    fun getSlope() = (point2.y - point1.y) / (point2.x - point1.x)
 
     fun setMoveStrategy(newMove: Move){
-        start.setMoveStrategy(newMove)
-        end.setMoveStrategy(newMove)
+        _point1.setMoveStrategy(newMove)
+        _point2.setMoveStrategy(newMove)
     }
 
     fun moveLine(){
-        start.movePoint()
-        end.movePoint() 
+        _point1.movePoint()
+        _point2.movePoint() 
     }
 
 }

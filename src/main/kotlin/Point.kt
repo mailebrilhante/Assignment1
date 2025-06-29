@@ -1,4 +1,3 @@
-package org.example
 import Move
 import kotlin.io.print
 import kotlin.io.println
