@@ -182,4 +182,56 @@ class TestAssignment1 {
         assertEquals("Bottom Right: (2.0, 2.0)", attributes[1])
     }
 
+    // ======Tests for Ellipse Class =====
+    @Test
+    fun testEllipseCreation() {
+        val center = Point(0.0, 0.0, null)
+        val radius1 = 3.0
+        val radius2 = 2.0
+        val ellipse = Ellipse(center, radius1, radius2)
+        assertEquals(center, ellipse.center)
+        assertEquals(radius1, ellipse.radius1)
+        assertEquals(radius2, ellipse.radius2)
+    }
+    @Test
+    fun testInvalidEllipse() {
+        val center = Point(0.0, 0.0, null)
+        val radius1 = -1.0
+        val radius2 = 2.0
+        assertThrows<IllegalArgumentException> {
+            Ellipse(center, radius1, radius2)
+        }
+    }
+    @Test
+    fun testGetEllipseArea() {
+        val center = Point(0.0, 0.0, null)
+        val radius1 = 3.0
+        val radius2 = 2.0
+        val ellipse = Ellipse(center, radius1, radius2)
+        assertEquals(Math.PI * radius1 * radius2, ellipse.getArea())
+    }
+    @Test
+
+    fun testGetEllipseAttributes() {
+        val center = Point(0.0, 0.0, null)
+        val radius1 = 3.0
+        val radius2 = 2.0
+        val ellipse = Ellipse(center, radius1, radius2)
+        val attributes = ellipse.getAttributes()
+        assertEquals(center, attributes[0])
+        assertEquals(radius1, attributes[1])
+        assertEquals(radius2, attributes[2])
+    }
+    @Test
+    fun testMoveEllipse() {
+        val center = Point(0.0, 0.0, MoveStraight(1.0, 1.0))
+        val radius1 = 3.0
+        val radius2 = 2.0
+        val ellipse = Ellipse(center, radius1, radius2)
+        ellipse.moveShape()
+        assertEquals(1.0, ellipse.center.x)
+        assertEquals(1.0, ellipse.center.y)
+    }
+    
+
 }
