@@ -3,15 +3,15 @@ abstract class Shape (private var _points: List<Point>) {
     val points: List<Point>
         get() = _points.map { it.clonePoint() }
 
-    fun setMoveStrategy(move: Move) { 
+    fun setMoveStrategy(move: MoveStrategy) {
         for (point in _points) {
             point.setMoveStrategy(move)
         }
     }
 
-    fun moveShape() {
+    fun move() {
        for (point in _points) {
-            point.movePoint()
+            point.move()
         }
     }
 

@@ -11,7 +11,7 @@ class TestAssignment1 {
     @Test
     fun testMove() {
         val point = Point(0.0, 0.0, MoveStraight(1.0, 1.0))
-        point.movePoint()
+        point.move()
         assertEquals(1.0, point.x)
         assertEquals(1.0, point.y)
     }
@@ -20,7 +20,7 @@ class TestAssignment1 {
     fun testSetMoveStrategy() {
         val point = Point(0.0, 0.0, null)
         point.setMoveStrategy(MoveStraight(1.0, 1.0))
-        point.movePoint()
+        point.move()
         assertEquals(1.0, point.x)
         assertEquals(1.0, point.y)
     }
@@ -36,7 +36,7 @@ class TestAssignment1 {
     @Test
     fun testMoveWithNullStrategy() {
         val point = Point(0.0, 0.0, null)
-        point.movePoint()
+        point.move()
         assertEquals(0.0, point.x)
         assertEquals(0.0, point.y)
     }
@@ -93,15 +93,15 @@ class TestAssignment1 {
     }
 
     @Test
-    fun testMoveLine(){
+    fun testMoveforLine(){
         val point1 = Point(0.0, 0.0, MoveStraight(1.0, 1.0))
         val point2 = Point(1.0, 1.0, MoveStraight(1.0, 1.0))
         val line = Line(point1, point2)
-        line.moveLine()
-        assertEquals(1.0, line.point1.x)
-        assertEquals(1.0, line.point1.y)
-        assertEquals(2.0, line.point2.x)
-        assertEquals(2.0, line.point2.y)
+        line.move()
+        assertEquals(1.0, line.start.x)
+        assertEquals(1.0, line.start.y)
+        assertEquals(2.0, line.end.x)
+        assertEquals(2.0, line.end.y)
     }
 
     @Test
@@ -109,11 +109,11 @@ class TestAssignment1 {
         val point1 = Point(0.0, 0.0, MoveStraight(-1.0, -1.0))
         val point2 = Point(1.0, 1.0, MoveStraight(-1.0, -1.0))
         val line = Line(point1, point2)
-        line.moveLine()
-        assertEquals(-1.0, line.point1.x)
-        assertEquals(-1.0, line.point1.y)
-        assertEquals(0.0, line.point2.x)
-        assertEquals(0.0, line.point2.y)
+        line.move()
+        assertEquals(-1.0, line.start.x)
+        assertEquals(-1.0, line.start.y)
+        assertEquals(0.0, line.end.x)
+        assertEquals(0.0, line.end.y)
     }
 
     @Test
@@ -122,11 +122,11 @@ class TestAssignment1 {
         val point2 = Point(1.0, 1.0, null)
         val line = Line(point1, point2)
         line.setMoveStrategy(MoveStraight(1.0, 1.0))
-        line.moveLine()
-        assertEquals(1.0, line.point1.x)
-        assertEquals(1.0, line.point1.y)
-        assertEquals(2.0, line.point2.x)
-        assertEquals(2.0, line.point2.y)
+        line.move()
+        assertEquals(1.0, line.start.x)
+        assertEquals(1.0, line.start.y)
+        assertEquals(2.0, line.end.x)
+        assertEquals(2.0, line.end.y)
     }
 
     // ======Tests for Rectangle Class =====
@@ -136,10 +136,10 @@ class TestAssignment1 {
         val point1 = Point(0.0, 0.0, null)
         val point2 = Point(2.0, 2.0, null)
         val rectangle = Rectangle(point1, point2)
-        assertEquals(point1.x, rectangle.point1.x)
-        assertEquals(point1.y, rectangle.point1.y)
-        assertEquals(point2.x, rectangle.point2.x)
-        assertEquals(point2.y, rectangle.point2.y)
+        assertEquals(point1.x, rectangle.topLeft.x)
+        assertEquals(point1.y, rectangle.topLeft.y)
+        assertEquals(point2.x, rectangle.bottomRight.x)
+        assertEquals(point2.y, rectangle.bottomRight.y)
     }
 
     @Test
@@ -147,10 +147,10 @@ class TestAssignment1 {
         val point1 = Point(2.0, 2.0, null)
         val point2 = Point(0.0, 0.0, null)
         val rectangle = Rectangle(point1, point2)
-        assertEquals(point1.x, rectangle.point1.x)
-        assertEquals(point1.y, rectangle.point1.y)
-        assertEquals(point2.x, rectangle.point2.x)
-        assertEquals(point2.y, rectangle.point2.y)
+        assertEquals(point1.x, rectangle.topLeft.x)
+        assertEquals(point1.y, rectangle.topLeft.y)
+        assertEquals(point2.x, rectangle.bottomRight.x)
+        assertEquals(point2.y, rectangle.bottomRight.y)
     }
 
     @Test
@@ -220,11 +220,11 @@ class TestAssignment1 {
         val point1 = Point(0.0, 0.0, MoveStraight(1.0, 1.0))
         val point2 = Point(2.0, 2.0, MoveStraight(1.0, 1.0))
         val rectangle = Rectangle(point1, point2)
-        rectangle.moveShape()
-        assertEquals(1.0, rectangle.point1.x)
-        assertEquals(1.0, rectangle.point1.y)
-        assertEquals(3.0, rectangle.point2.x)
-        assertEquals(3.0, rectangle.point2.y)
+        rectangle.move()
+        assertEquals(1.0, rectangle.topLeft.x)
+        assertEquals(1.0, rectangle.topLeft.y)
+        assertEquals(3.0, rectangle.bottomRight.x)
+        assertEquals(3.0, rectangle.bottomRight.y)
     }
 
     @Test
@@ -232,11 +232,11 @@ class TestAssignment1 {
         val point1 = Point(0.0, 0.0, MoveStraight(-1.0, -1.0))
         val point2 = Point(2.0, 2.0, MoveStraight(-1.0, -1.0))
         val rectangle = Rectangle(point1, point2)
-        rectangle.moveShape()
-        assertEquals(-1.0, rectangle.point1.x)
-        assertEquals(-1.0, rectangle.point1.y)
-        assertEquals(1.0, rectangle.point2.x)
-        assertEquals(1.0, rectangle.point2.y)
+        rectangle.move()
+        assertEquals(-1.0, rectangle.topLeft.x)
+        assertEquals(-1.0, rectangle.topLeft.y)
+        assertEquals(1.0, rectangle.bottomRight.x)
+        assertEquals(1.0, rectangle.bottomRight.y)
     }
 
     @Test
@@ -245,11 +245,11 @@ class TestAssignment1 {
         val point2 = Point(2.0, 2.0, null)
         val rectangle = Rectangle(point1, point2)
         rectangle.setMoveStrategy(MoveStraight(1.0, 1.0))
-        rectangle.moveShape()
-        assertEquals(1.0, rectangle.point1.x)
-        assertEquals(1.0, rectangle.point1.y)
-        assertEquals(3.0, rectangle.point2.x)
-        assertEquals(3.0, rectangle.point2.y)
+        rectangle.move()
+        assertEquals(1.0, rectangle.topLeft.x)
+        assertEquals(1.0, rectangle.topLeft.y)
+        assertEquals(3.0, rectangle.bottomRight.x)
+        assertEquals(3.0, rectangle.bottomRight.y)
     }
 
     // ===== Test for Square Class =====
@@ -258,10 +258,10 @@ class TestAssignment1 {
         val point1 = Point(0.0, 0.0, null)
         val point2 = Point(2.0, 2.0, null)
         val square = Square(point1, point2)
-        assertEquals(point1.x, square.point1.x)
-        assertEquals(point1.y, square.point1.y)
-        assertEquals(point2.x, square.point2.x)
-        assertEquals(point2.y, square.point2.y)
+        assertEquals(point1.x, square.topLeft.x)
+        assertEquals(point1.y, square.topLeft.y)
+        assertEquals(point2.x, square.bottomRight.x)
+        assertEquals(point2.y, square.bottomRight.y)
     }
 
     @Test
@@ -269,10 +269,10 @@ class TestAssignment1 {
         val point1 = Point(2.0, 0.0, null)
         val point2 = Point(0.0, 2.0, null)
         val square = Square(point1, point2)
-        assertEquals(point1.x, square.point1.x)
-        assertEquals(point1.y, square.point1.y)
-        assertEquals(point2.x, square.point2.x)
-        assertEquals(point2.y, square.point2.y)
+        assertEquals(point1.x, square.topLeft.x)
+        assertEquals(point1.y, square.topLeft.y)
+        assertEquals(point2.x, square.bottomRight.x)
+        assertEquals(point2.y, square.bottomRight.y)
     }
 
     @Test
@@ -288,11 +288,11 @@ class TestAssignment1 {
         val point1 = Point(0.0, 0.0, MoveStraight(1.0, 1.0))
         val point2 = Point(2.0, 2.0, MoveStraight(1.0, 1.0))
         val square = Square(point1, point2)
-        square.moveShape()
-        assertEquals(1.0, square.point1.x)
-        assertEquals(1.0, square.point1.y)
-        assertEquals(3.0, square.point2.x)
-        assertEquals(3.0, square.point2.y)
+        square.move()
+        assertEquals(1.0, square.topLeft.x)
+        assertEquals(1.0, square.topLeft.y)
+        assertEquals(3.0, square.bottomRight.x)
+        assertEquals(3.0, square.bottomRight.y)
     }
     @Test
     fun testGetSquareArea() {
@@ -327,11 +327,11 @@ class TestAssignment1 {
         val point1 = Point(0.0, 0.0, MoveStraight(-1.0, -1.0))
         val point2 = Point(2.0, 2.0, MoveStraight(-1.0, -1.0))
         val square = Square(point1, point2)
-        square.moveShape()
-        assertEquals(-1.0, square.point1.x)
-        assertEquals(-1.0, square.point1.y)
-        assertEquals(1.0, square.point2.x)
-        assertEquals(1.0, square.point2.y)
+        square.move()
+        assertEquals(-1.0, square.topLeft.x)
+        assertEquals(-1.0, square.topLeft.y)
+        assertEquals(1.0, square.bottomRight.x)
+        assertEquals(1.0, square.bottomRight.y)
     }
 
     @Test
@@ -340,11 +340,11 @@ class TestAssignment1 {
         val point2 = Point(2.0, 2.0, null)
         val square = Square(point1, point2)
         square.setMoveStrategy(MoveStraight(1.0, 1.0))
-        square.moveShape()
-        assertEquals(1.0, square.point1.x)
-        assertEquals(1.0, square.point1.y)
-        assertEquals(3.0, square.point2.x)
-        assertEquals(3.0, square.point2.y)
+        square.move()
+        assertEquals(1.0, square.topLeft.x)
+        assertEquals(1.0, square.topLeft.y)
+        assertEquals(3.0, square.bottomRight.x)
+        assertEquals(3.0, square.bottomRight.y)
     }
 
     // ======Tests for Ellipse Class =====
@@ -375,6 +375,16 @@ class TestAssignment1 {
         val center = Point(0.0, 0.0, null)
         val radius1 = 0.0
         val radius2 = 2.0
+        assertThrows<IllegalArgumentException> {
+            Ellipse(center, radius1, radius2)
+        }
+    }
+
+    @Test
+    fun testInvalidEllipseSecondRadiusOnly() {
+        val center = Point(0.0, 0.0, null)
+        val radius1 = 3.0
+        val radius2 = 0.0
         assertThrows<IllegalArgumentException> {
             Ellipse(center, radius1, radius2)
         }
@@ -417,7 +427,7 @@ class TestAssignment1 {
         val radius1 = 3.0
         val radius2 = 2.0
         val ellipse = Ellipse(center, radius1, radius2)
-        ellipse.moveShape()
+        ellipse.move()
         assertEquals(1.0, ellipse.center.x)
         assertEquals(1.0, ellipse.center.y)
     }
@@ -428,7 +438,7 @@ class TestAssignment1 {
         val radius1 = 3.0
         val radius2 = 2.0
         val ellipse = Ellipse(center, radius1, radius2)
-        ellipse.moveShape()
+        ellipse.move()
         assertEquals(-1.0, ellipse.center.x)
         assertEquals(-1.0, ellipse.center.y)
     }
@@ -440,7 +450,7 @@ class TestAssignment1 {
         val radius2 = 2.0
         val ellipse = Ellipse(center, radius1, radius2)
         ellipse.setMoveStrategy(MoveStraight(1.0, 1.0))
-        ellipse.moveShape()
+        ellipse.move()
         assertEquals(1.0, ellipse.center.x)
         assertEquals(1.0, ellipse.center.y)
     }
@@ -509,7 +519,7 @@ class TestAssignment1 {
         val center = Point(0.0, 0.0, MoveStraight(1.0, 1.0))
         val radius = 3.0
         val circle = Circle(center, radius, radius)
-        circle.moveShape()
+        circle.move()
         assertEquals(1.0, circle.center.x)
         assertEquals(1.0, circle.center.y)
     }
@@ -519,7 +529,7 @@ class TestAssignment1 {
         val center = Point(0.0, 0.0, MoveStraight(-1.0, -1.0))
         val radius = 3.0
         val circle = Circle(center, radius, radius)
-        circle.moveShape()
+        circle.move()
         assertEquals(-1.0, circle.center.x)
         assertEquals(-1.0, circle.center.y)
     }
@@ -530,7 +540,7 @@ class TestAssignment1 {
         val radius = 3.0
         val circle = Circle(center, radius, radius)
         circle.setMoveStrategy(MoveStraight(1.0, 1.0))
-        circle.moveShape()
+        circle.move()
         assertEquals(1.0, circle.center.x)
         assertEquals(1.0, circle.center.y)
     }
@@ -596,7 +606,7 @@ class TestAssignment1 {
         val point2 = Point(3.0, 0.0, MoveStraight(1.0, 1.0))
         val point3 = Point(1.5, 2.0, MoveStraight(1.0, 1.0))
         val triangle = Triangle(point1, point2, point3)
-        triangle.moveShape()
+        triangle.move()
         assertEquals(1.0, triangle.point1.x)
         assertEquals(1.0, triangle.point1.y)
         assertEquals(4.0, triangle.point2.x)
@@ -611,7 +621,7 @@ class TestAssignment1 {
         val point2 = Point(3.0, 0.0, MoveStraight(-1.0, -1.0))
         val point3 = Point(1.5, 2.0, MoveStraight(-1.0, -1.0))
         val triangle = Triangle(point1, point2, point3)
-        triangle.moveShape()
+        triangle.move()
         assertEquals(-1.0, triangle.point1.x)
         assertEquals(-1.0, triangle.point1.y)
         assertEquals(2.0, triangle.point2.x)
@@ -627,7 +637,7 @@ class TestAssignment1 {
         val point3 = Point(1.5, 2.0, null)
         val triangle = Triangle(point1, point2, point3)
         triangle.setMoveStrategy(MoveStraight(1.0, 1.0))
-        triangle.moveShape()
+        triangle.move()
         assertEquals(1.0, triangle.point1.x)
         assertEquals(1.0, triangle.point1.y)
         assertEquals(4.0, triangle.point2.x)

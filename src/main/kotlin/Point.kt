@@ -1,11 +1,11 @@
-import Move
+import MoveStrategy
 import kotlin.io.print
 import kotlin.io.println
 
 class Point(
     private var _x: Double, 
     private var _y: Double, 
-    private var moveStrategy: Move? = null
+    private var moveStrategy: MoveStrategy? = null
 ) {
 
     val x : Double
@@ -15,11 +15,11 @@ class Point(
         get() = _y
 
     
-    fun setMoveStrategy(newMove: Move) {
-        moveStrategy = newMove
+    fun setMoveStrategy(newMoveStrategy: MoveStrategy) {
+        moveStrategy = newMoveStrategy
     }
     
-    fun movePoint() = moveStrategy?.move(this) ?: println("No move strategy set for this point.")
+    fun move() = moveStrategy?.move(this) ?: println("No move strategy set for this point.")
 
     fun updatePoint(newX: Double, newY: Double) {
         _x = newX
